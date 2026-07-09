@@ -1,3 +1,17 @@
+/*********************************************************************************************************
+ * INTERAZIONE TRA OGGETTI E VETTORI DELLA LIBRERIA STANDARD
+ * * Studio dell'intersezione tra le strutture dati dinamiche della STL e la modellazione a oggetti.
+ * * CONCETTI CHIAVE:
+ * - Creazione della classe di modellazione "Recluta" con attributi di classificazione di tipo stringa.
+ * - Utilizzo del contenitore dinamico standard `std::vector<Recluta>` per collezionare oggetti.
+ * - Inserimento degli elementi nel vettore tramite la funzione `.push_back()`.
+ * * ALGORITMICA & OTTIMIZZAZIONE:
+ * - Scomposizione del codice tramite una funzione globale `ricerca_mago`.
+ * - Passaggio efficiente del vettore tramite **riferimento costante** (`const vector<Recluta> &elenco`) 
+ * per azzerare l'uso di memoria ed evitare copie non necessarie della struttura.
+ * - Algoritmo di scansione e filtraggio lineare: scansione della lista e confronto di stringhe.
+ *********************************************************************************************************/
+
 #include <iostream>
 #include <string>
 #include <vector>
