@@ -1,3 +1,17 @@
+/*********************************************************************************************************
+ * INTERAZIONE DIRETTA E MUTAZIONE DEGLI STATI TRA CLASSI FRATELLE
+ * * Esercizio avanzato sulla collaborazione e sul passaggio di oggetti come parametri di metodi.
+ * * 1. GERARCHIA DI BASE:
+ * - Classe base "Personaggio" che unifica nome e punti vita comuni a tutte le entità del gioco.
+ * - Classe derivata "Mago" specializzata con l'attributo 'mana'.
+ * - Classe derivata "Guerriero" specializzata con l'attributo 'forza'.
+ * * INTERAZIONE TRA OGGETTI (Metodo Cross-Class):
+ * - Studio del metodo `attacca(Mago &bersaglio)` all'interno della classe Guerriero.
+ * - Passaggio dell'oggetto bersaglio tramite **riferimento diretto** (`&`). Questo permette al Guerriero 
+ * di modificare a runtime e in tempo reale i punti vita dell'istanza del Mago presente nel main, 
+ * simulando un vero e proprio sistema di combattimento ad oggetti.
+ *********************************************************************************************************/
+
 #include <iostream>
 #include <string>
 #include <vector>
