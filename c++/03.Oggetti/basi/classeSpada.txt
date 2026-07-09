@@ -1,3 +1,18 @@
+/*********************************************************************************************************
+ * FONDAMENTI DELLA OOP: OGGETTI, ATTRIBUTI E METODI BASE
+ * * Il punto di partenza dell'apprendimento degli oggetti.
+ * * CONCETTI CHIAVE:
+ * - Definizione di una classe semplice chiamata "Spada".
+ * - Attributi pubblici (`public`): 'nome' (string), 'danno_base' (int), 'durability' (int).
+ * - Metodi di azione (`void`): 
+ * - 'usa()': riduce l'integrità dell'arma e ne mostra lo stato residuo.
+ * - 'affila()': ripristina la durevolezza al valore massimo e applica un bonus permanente al danno.
+ * * NEL MAIN:
+ * - Creazione e istanziazione di un oggetto statico sullo stack.
+ * - Inizializzazione diretta degli attributi tramite l'operatore punto (.).
+ * - Chiamata sequenziale dei metodi dell'oggetto.
+ *********************************************************************************************************/
+
 #include <iostream>
 #include <string>
 
