@@ -1,3 +1,21 @@
+/*********************************************************************************************************
+ * INCAPSULAMENTO BLINDATO ED EREDITARIEТÀ DI BASE
+ * * Esercizio focalizzato sulla protezione dei dati interni e sul riutilizzo del codice.
+ * * 1. CLASSE BASE: "Prodotto"
+ * - Attributi privati (`private`): 'prezzo' (completamente protetto da modifiche esterne illegali).
+ * - Attributi pubblici (`public`): 'nome'.
+ * - Incapsulamento: Metodi Getter (`get_prezzo`) e Setter (`set_prezzo`) con logica di controllo integrata 
+ * per impedire l'assegnazione di valori negativi.
+ * - Sicurezza nel Costruttore: Chiamata diretta a `set_prezzo` anche in fase di inizializzazione per 
+ * mantenere i controlli di sicurezza sempre attivi.
+ * * 2. CLASSE FIGLIA: "Elettronica" (Eredita da Prodotto)
+ * - Ereditarietà pubblica (`: public Prodotto`).
+ * - Inizializzazione a cascata: il costruttore inoltra nome e prezzo al costruttore del Padre.
+ * * ALGORITMICA NEL MAIN:
+ * - Calcolo di aggregazione: funzione `somma` per scorrere un vettore di oggetti figli e sommare i prezzi 
+ * estratti in sicurezza tramite il Getter pubblico del Padre.
+ *********************************************************************************************************/
+
 #include <iostream>
 #include <string>
 #include <vector>
