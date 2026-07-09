@@ -1,3 +1,18 @@
+/*********************************************************************************************************
+ * INCAPSULAMENTO INTERMEDIO ED ALGORITMI DI RICERCA SU OGGETTI
+ * * Studio avanzato sulle strutture di controllo applicate ad attributi ereditati protetti.
+ * * 1. CLASSE BASE: "Personaggio"
+ * - Attributo privato 'vita' accessibile da fuori solo mediante Getter (`get_vita`) e Setter (`set_vita`).
+ * - Logica del Setter: azzeramento automatico dei punti vita nel caso in cui i danni portino il valore sotto zero.
+ * * 2. CLASSE FIGLIA: "Guerriero" (Eredita da Personaggio)
+ * - Specializzazione della classe con l'aggiunta dell'attributo pubblico 'forza'.
+ * - Chiamata dei metodi del Padre dall'interno dei metodi della Figlia (`get_vita()` dentro `attacca()`).
+ * * ALGORITMICA AVANZATA:
+ * - Scomposizione strutturale tramite la funzione `stampa_guerriero_piu_forte`.
+ * - Implementazione dell'algoritmo di **ricerca del valore massimo** applicato a un attributo specifico 
+ * di una collezione di oggetti passata per riferimento (`vector<Guerriero> &lista`).
+ *********************************************************************************************************/
+
 #include <iostream>
 #include <string>
 #include <vector>
