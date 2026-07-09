@@ -1,0 +1,57 @@
+/********************************************
+ * Crea una classe base chiamata "Personaggio".
+ * Deve includere:
+ * - Un attributo pubblico 'string nome'.
+ * - Un costruttore per impostare il nome.
+ * - Il distruttore virtuale.
+ * - Un metodo virtuale 'usa_mossa_speciale()' che stampa un messaggio generico.
+ * * Crea una classe figlia chiamata "Mago" che eredita da Personaggio:
+ * - Deve sovrascrivere 'usa_mossa_speciale()' usando 'override' per stampare:
+ * "[nome] lancia una potente palla di fuoco!"
+ * * Nel main:
+ * - Crea un puntatore alla classe base Personaggio che punta a un oggetto Mago (es. nome: "Merlino").
+ * - Attiva la mossa usando la freccia (->) e poi distruggi il personaggio con delete.
+ ********************************************/
+ 
+ 
+ 
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Personaggio{
+public: string nome;
+    
+    Personaggio(string n){
+        nome = n;
+    }
+    
+    virtual ~Personaggio(){}
+    
+    virtual void usa_mossa_speciale(){
+        cout << "Sto usando mossa speciale" << endl;
+    }
+    
+};
+
+class Mago: public Personaggio{
+public:
+    Mago(string n): Personaggio(n){}
+    
+    void usa_mossa_speciale() override{
+        cout << nome << " sta usando palla di fuoco" << endl;
+        }
+
+};
+
+int main(){
+    
+    Personaggio* m1 = new Mago("Un mago super figo");
+    
+    m1->usa_mossa_speciale();
+    
+    delete m1;
+    
+    return 0;
+}

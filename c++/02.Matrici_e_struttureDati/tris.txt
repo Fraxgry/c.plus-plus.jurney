@@ -1,0 +1,139 @@
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+
+using namespace std;
+
+void pulisci_schermo() {
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
+}
+
+void stampa_mappa(vector<vector<char>> &matrice){
+   
+    
+    for(int i = 0; i < matrice.size(); i++){
+        for(int j = 0; j < matrice[i].size(); j++){
+            cout << matrice[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+bool scansiona_matrice(vector<vector<char>> &matrice){
+// scansiona la matruce per vedere quale simbolo stampare nella casella scelta
+    bool x = false;
+    int conta_x = 0;
+    int conta_o = 0;
+
+    for(int i = 0; i < matrice.size(); i++){
+        for(int j = 0; j < matrice[i].size(); j++){
+            if(matrice[i][j] == 'x'){
+                conta_x += 1;
+            }else if(matrice[i][j] == 'o'){
+                conta_o += 1;
+            }
+        }
+    }
+
+    if(conta_x == conta_o){ // se sono uguali vuol dire che tocca alla x essere stampata e quindi x diventerà true
+        x = true;
+    }
+
+    return x;
+}
+
+bool verifica_vittoria(vector<vector<char>> &matrice){
+
+    bool vittoria = false;
+
+    if(matrice[0][0] == matrice [0][1] && matrice[0][1] == matrice[0][2]){
+        vittoria = true;
+    }else if(matrice[1][0] == matrice [1][1] && matrice[1][1] == matrice[1][2]){
+        vittoria = true;
+    }else if(matrice[2][0] == matrice [2][1] && matrice[2][1] == matrice[2][2]){
+        vittoria = true;
+    }else if(matrice[0][0] == matrice [1][0] && matrice[1][0] == matrice[2][0]){
+        vittoria = true;
+    }else if(matrice[0][1] == matrice [1][1] && matrice[1][1] == matrice[2][1]){
+        vittoria = true;
+    }else if(matrice[0][2] == matrice [1][2] && matrice[1][2] == matrice[2][2]){
+        vittoria = true;
+    }else if(matrice[0][0] == matrice [1][1] && matrice[1][1] == matrice[2][2]){
+        vittoria = true;
+    }else if(matrice[0][2] == matrice [1][1] && matrice[1][1] == matrice[2][0]){
+        vittoria = true;
+    }
+    
+
+    return vittoria;
+}
+
+int main(){
+
+    vector<vector<char>> griglia = {
+    {'1', '2', '3'},
+    {'4', '5', '6'},
+    {'7', '8', '9'}
+    };
+
+    // 1. Spostiamo la prima stampa dentro il ciclo, così si aggiorna sempre!
+    char casella; // Modificato in char!
+    int turni = 0;
+
+    do{
+        pulisci_schermo();
+        stampa_mappa(griglia);
+
+        cout << "Inserire il numero della casella che si vuole occupare: " << endl;
+        cin >> casella;
+
+        bool mossa_valida = false; 
+
+        for(int i = 0; i < griglia.size(); i++){
+            for(int j = 0; j < griglia[i].size(); j++){
+                if(griglia[i][j] == casella){
+                    if(scansiona_matrice(griglia) == true){
+                        griglia[i][j] = 'x';
+                    }else{
+                        griglia[i][j] = 'o';
+                    }
+                    turni++; 
+                    mossa_valida = true; // se la mossa è valida proseguo
+                }
+            }
+        }
+
+        // se il comando inserito non è accettabile avviso l'utente
+        if(mossa_valida == false) {
+            cout << "Mossa non valida! Premi un tasto per riprovare...";
+            cin.ignore();
+            cin.get(); 
+        }
+
+    }while(verifica_vittoria(griglia) == false && turni < 9);
+
+    // Mostra la griglia finale dopo l'ultima mossa
+    pulisci_schermo();
+    stampa_mappa(griglia);
+
+    if(verifica_vittoria(griglia) == true){
+        if(scansiona_matrice(griglia) == false){
+            cout << "Ha vinto la x" << endl;
+            
+        }else{
+            cout << "Ha vinto la o" << endl;
+        }
+    }else{
+        cout << "Pareggio" << endl;
+    }
+
+    cout << "\nPremere INVIO per uscire...";
+    cin.ignore(); // Svuota il buffer dei tasti premuti in precedenza
+    cin.get();    // Aspetta la pressione di INVIO
+
+    return 0;
+}

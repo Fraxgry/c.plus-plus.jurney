@@ -1,0 +1,30 @@
+/**
+ * @file raddoppia.cpp
+ * @brief Calcola il doppio di un numero intero tramite una funzione dedicata.
+ * * Il programma definisce una funzione che accetta un parametro intero,
+ * ne calcola il doppio e restituisce il risultato al main, che provvede
+ * a stamparlo a schermo.
+ * * @return int Restituisce 0 in caso di esecuzione corretta.
+ */
+ 
+ 
+#include <iostream>
+
+using namespace std;
+
+int moltiplica(int n){
+    return n*2;
+}
+
+int main(){
+    
+    int n;
+    
+    cout << "Questo programma moltiplica per 2 qualsiasi numero e ne restituisce il risultato" << endl;
+    cout << "Inserisci il numero che vuoi calcolare: ";
+    
+    cin >> n;
+    int ris = moltiplica(n);
+    
+    cout << "Il risultato è " << ris;
+}

@@ -1,0 +1,68 @@
+/*
+ * Esercizio 5: Lo Smartphone (Interazione e Vettori di Oggetti)
+ * * Perché serve al Game Dev: Nel tuo gioco avrai bisogno di una classe "Mondo" o "Livello" che contiene 
+ * al suo interno una lista di *altri oggetti* (ad esempio, un vettore pieno di oggetti di tipo Nemico 
+ * o Moneta). Qui impariamo a fare esattamente questo: mettere oggetti dentro altri oggetti.
+ * * Traccia:
+ * Crea una classe chiamata "Contatto".
+ * Ogni contatto ha come attributi un nome (string) e un numero di telefono (string).
+ * * Crea poi una seconda classe chiamata "Rubrica".
+ * La classe Rubrica deve avere come attributo:
+ * - Un vettore (vector) che contiene oggetti di tipo "Contatto".
+ * * Deve includere i seguenti metodi:
+ * 1. Un metodo per aggiungere un nuovo oggetto "Contatto" all'interno del vettore della rubrica.
+ * 2. Un metodo di ricerca che riceve come parametro un nome (string): il metodo deve scorrere il vettore e, 
+ * se trova il contatto, mostrare il suo numero di telefono. Se non lo trova, deve mostrare un messaggio di errore.
+ */
+ 
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class Contatto{
+public:
+    string nome;
+    string numero;
+};
+
+class Rubrica{
+public:
+    vector<Contatto> lista_contatti;
+    
+    void cerca(string ricercato){
+        for(int i = 0; i < lista_contatti.size(); i++){
+            if(lista_contatti[i].nome == ricercato){
+                cout << lista_contatti[i].numero;
+                return;
+            }
+        }
+        cout << "Non presente";
+    }
+    
+    void aggiungi(Contatto nuovo_contatto){
+        lista_contatti.push_back(nuovo_contatto);
+    }
+};
+
+int main(){
+    
+    Contatto c1;
+    Contatto c2;
+    Contatto c3;
+    c1.nome = "Fra";
+    c1.numero = "351 912 1771";
+    c2.nome = "GGGDFFD";
+    c2.numero = "44355244";
+    c3.nome = "gaga";
+    c3.numero = "44355244";
+    
+    Rubrica mia_rubrica;
+    mia_rubrica.aggiungi(c1);
+    mia_rubrica.aggiungi(c2);
+    mia_rubrica.aggiungi(c3);
+    mia_rubrica.cerca("gaga");
+    
+    return 0;
+}

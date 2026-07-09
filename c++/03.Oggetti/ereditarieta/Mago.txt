@@ -1,0 +1,68 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class Personaggio{
+public:
+    string nome;
+    int vita;
+   
+    Personaggio(string n, int v){
+        nome = n;
+        vita = v;
+    }
+    void mostra_stato(){
+        cout << nome << " ha " << vita << " HP." << endl;
+       
+    }
+
+};
+
+class Mago : public Personaggio{
+public:
+    int mana;
+   
+    Mago(string n, int v, int m) :  Personaggio(n,v){
+    mana = m;
+    }
+   
+    void lancia_incantesimo(){
+        cout << "Mago lancia palla di fuoco" << endl;
+    }
+};
+
+class Guerriero : public Personaggio{
+public:
+    int forza;
+   
+    Guerriero(string n, int v, int f) : Personaggio(n,v){
+    forza = f;
+    }
+   
+    void attacca(Mago &bersaglio){
+        cout << nome << " attacca con la sua ascia!" << endl;
+        bersaglio.vita -= forza;
+        if(bersaglio.vita < 0){
+            bersaglio.vita = 0;
+        }
+        cout << bersaglio.vita << endl;
+    }
+};
+   
+
+int main()
+{
+    vector<Mago> maghi;
+    vector<Guerriero> guerrieri;
+   
+    maghi.push_back(Mago("Gandalf", 80, 150));
+    guerrieri.push_back(Guerriero("Thor", 120, 150));
+   
+    guerrieri[0].attacca(maghi[0]);
+   
+   
+   
+    return 0;
+}

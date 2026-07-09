@@ -1,0 +1,52 @@
+/********************************************
+ * Crea una classe base chiamata "MetodoPagamento".
+ * Deve includere:
+ * - Un attributo pubblico 'float importo'.
+ * - Un costruttore per impostare l'importo.
+ * - Il distruttore virtuale.
+ * - Un metodo virtuale 'effettua_pagamento()' che stampa un messaggio generico.
+ * * Crea una classe figlia chiamata "CartaCredito" che eredita da MetodoPagamento:
+ * - Deve sovrascrivere 'effettua_pagamento()' usando 'override' per stampare:
+ * "Pagamento di [importo] euro effettuato con Carta di Credito (commissione 1€)."
+ * * Nel main:
+ * - Crea un puntatore alla classe base che punta a un oggetto CartaCredito.
+ * - Esegui il pagamento usando la freccia (->) e libera la memoria con delete.
+ ********************************************/
+ 
+#include <iostream>
+
+using namespace std;
+
+class MetodoPagamento{
+public: float importo;
+    
+    MetodoPagamento(float p){
+        importo = p;
+    }
+    
+    virtual ~MetodoPagamento() {}
+    virtual void effettua_pagamento(){
+        cout << "Pagamento" << endl;
+    }
+    
+};
+
+class CartaDiCredito: public MetodoPagamento{
+public:
+    CartaDiCredito(float p) : MetodoPagamento (p){}
+    
+    void effettua_pagamento() override{
+        cout <<"Pagamento di: " << importo << " euto con commissione di 1 eruo effettuato con carta di credito" << endl;
+        
+    }
+    
+};
+
+int main(){
+    
+    MetodoPagamento* c1 = new CartaDiCredito (24.7);
+    c1->effettua_pagamento();
+    
+    delete c1;
+    return 0;
+}

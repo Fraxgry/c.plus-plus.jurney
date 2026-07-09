@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class Recluta{
+public:
+    string nome;
+    string classe_ruolo;
+   
+
+};
+
+void ricerca_mago (const vector<Recluta> &elenco){
+    for(int i = 0; i < elenco.size(); i++){
+        if(elenco[i].classe_ruolo == "Mago"){
+            cout << elenco[i].nome << endl;
+        }
+    }
+   
+}
+   
+
+int main()
+{
+    vector<Recluta> gilda;
+   
+    Recluta r1;
+    r1.nome = "Gimli";
+    r1.classe_ruolo = "Guerriero";
+   
+    Recluta r2;
+    r2.nome = "Gandalf";
+    r2.classe_ruolo = "Mago";
+   
+    gilda.push_back(r1);
+    gilda.push_back(r2);
+   
+    for(int i = 0; i < gilda.size(); i++){
+        cout << "Nome: " << gilda[i].nome << " | Ruolo: " << gilda[i].classe_ruolo << endl;
+    }
+   
+    ricerca_mago(gilda);
+   
+    return 0;
+}

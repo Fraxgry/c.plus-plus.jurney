@@ -1,0 +1,1 @@
+in questa cartella oltre a esercizi che trattano l'ereditarietà c'è anche l'introduzione agli attributi privati (getter e setter) e ai costruttori

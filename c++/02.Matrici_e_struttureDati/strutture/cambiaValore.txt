@@ -1,0 +1,37 @@
+/**
+ * @file negozio_armi.cpp
+ * @brief Definisce la struct Arma (string nome, int danno, float prezzo). Riduce il prezzo del 10% e lo stampa.
+ * @return int Restituisce 0 alla fine dell'esecuzione.
+ */
+ 
+ 
+#include <iostream>
+
+using namespace std;
+
+struct arma{
+    string nome;
+    int danno;
+    float prezzo;
+};
+
+void sconto(arma &a){
+    
+    float sconto = 0.10;
+    a.prezzo = a.prezzo-a.prezzo*sconto;
+    
+}
+
+int main(){
+    
+    arma spada;
+    spada.nome = "Spada";
+    spada.danno = 100;
+    spada.prezzo = 100;
+    
+    sconto(spada);
+    cout << spada.prezzo;
+    
+    
+    return 0;
+}

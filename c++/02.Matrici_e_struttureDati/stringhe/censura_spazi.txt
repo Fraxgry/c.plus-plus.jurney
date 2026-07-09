@@ -1,0 +1,32 @@
+/**
+ * @file censura_spazi.cpp
+ * @brief Legge una riga intera di testo e sostituisce tutti i caratteri di spazio con un trattino '-'.
+ * @param string frase La frase intera inserita dall'utente.
+ * @return int Restituisce 0 alla fine dell'esecuzione.
+ */
+ 
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+void censura(string frase){
+    
+    for(int i = 0; i < frase.length(); i++){
+        if(frase[i] == ' '){
+            frase[i] = '_';
+        }
+    }
+    
+    cout << frase << endl;
+}
+
+int main(){
+    
+    string frase;
+    
+    cout << "Inserisci la frase da censurare: " << endl;
+    getline(cin, frase);
+    
+    censura(frase);
+}

@@ -1,0 +1,29 @@
+/**
+ * @file punto_cartesiano.cpp
+ * @brief Definisce la struct Punto (int x, int y), chiede le coordinate all'utente e le ristampa.
+ * @return int Restituisce 0 alla fine dell'esecuzione.
+ */
+ 
+#include <iostream>
+
+using namespace std;
+
+struct punto{
+    
+    int x;
+    int y;
+};
+
+int main(){
+    
+    punto p;
+    
+    cout << "Inserisci la coordinata x: ";
+    cin >> p.x;
+    cout << "Inserisci la coordinata y: ";
+    cin >> p.y;
+    
+    cout << "x: " << p.x << endl << "y: " << p.y;
+    
+    return 0;
+}

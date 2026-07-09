@@ -1,0 +1,24 @@
+/**
+ * @file modifica_iniziale.cpp
+ * @brief Chiede all'utente una parola e sostituisce la sua prima lettera con una 'X'.
+ * @param string parola La stringa inserita dall'utente.
+ * @return int Restituisce 0 alla fine dell'esecuzione.
+ */
+ 
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int main(){
+    
+    string parola;
+    
+    cout << "Inserisci una parola: ";
+    cin >> parola;
+    
+    parola[0] = 'X';
+    cout << parola;
+    
+    return 0;
+}

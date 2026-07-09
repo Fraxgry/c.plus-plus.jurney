@@ -1,0 +1,33 @@
+/**
+ * @file vettore_invertito.cpp
+ * @brief Inversione dell'ordine degli elementi in un vettore dinamico.
+ * * Il programma richiede all'utente l'inserimento di 5 numeri interi,
+ * li memorizza in un std::vector e successivamente li ristampa a schermo
+ * scorrendo il vettore dall'ultimo elemento fino al primo.
+ * * @return int Restituisce 0 in caso di esecuzione corretta.
+ */
+ 
+#include <iostream>
+#include <vector>
+
+using namespace std;
+int main(){
+    
+    int n;
+    vector<int> lista;
+    
+    cout << "Questo programma, data una lista di numeri interi la inverte e la stampa" << endl;
+    cout << "Inserisci tanti numeri quanto ritieni necessario, alla fine inserisci 0 per terminare la raccolta" << endl;
+    
+    do{
+        cout << "Inserisci il numero: ";
+        cin >> n;
+        lista.push_back(n);
+    }while(n != 0);
+    
+    for(int i = lista.size()-2; i >= 0; i--){
+        cout << lista[i] << " ";
+    }
+    
+    return 0;
+}

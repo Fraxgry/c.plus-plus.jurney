@@ -1,0 +1,98 @@
+/**
+ * @file muovi_giocatore.cpp
+ * @brief Gestione del movimento di un'entità in una matrice.
+ * * Il programma posiziona inizialmente un giocatore (9) al centro della griglia.
+ * Tramite input da tastiera (W, A, S, D), aggiorna le coordinate del giocatore,
+ * pulisce la vecchia posizione e stampa la mappa aggiornata.
+ * * @return int Restituisce 0 in caso di esecuzione corretta.
+ */
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void stampa_mappa(vector<vector<int>> &mappa){
+    for(int i = 0; i < mappa.size(); i++){
+        for(int j = 0; j < mappa[i].size(); j++){
+            cout << mappa[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+int main(){
+
+    vector<vector<int>> mappa = {{1, 0, 0}, {0, 9, 1}, {0, 1, 0}};
+    char scelta;
+    int px = 1;
+    int py = 1;
+    
+    stampa_mappa(mappa);
+    
+    
+    
+    do{
+        
+        cin >> scelta;
+        switch(scelta){
+        
+            case 'w':
+                
+                
+                if(mappa[px - 1][py] == 1){
+                    cout << "Strada bloccata!!" << endl;
+                }else{
+                    mappa[px][py] = 0;
+                    mappa[px - 1][py] = 9;
+                    px -=1;
+                }
+                break;
+                
+                
+            case 'a':
+                if(mappa[px][py -1] == 1){
+                    cout << "Strada bloccata!!" << endl;
+                }else{
+                    mappa[px][py] = 0;
+                    mappa[px][py - 1] = 9;
+                    py -= 1;
+                }
+                break;
+                
+                
+            case 's':
+                if(mappa[px +1][py] == 1){
+                    cout << "Strada bloccata!!" << endl;
+                }else{
+                    mappa[px][py] = 0;  
+                    mappa[px + 1][py] = 9;
+                    px += 1;
+                }
+                break;
+                
+                
+            case 'd':
+                if(mappa[px][py + 1] == 1){
+                    cout << "Strada bloccata" << endl;
+                }else{
+                    mappa[px][py] = 0;
+                    mappa[px][py + 1] = 9;
+                    py += 1;
+                }
+                break;
+                
+                
+            case 'q':
+                return 0;
+                
+                
+            default:
+                break;
+        }
+        stampa_mappa(mappa);
+        
+    }while(scelta != 'q');
+    
+    return 0;
+}

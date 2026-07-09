@@ -1,0 +1,56 @@
+/**
+ * @file convertitore_temperature.cpp
+ * @brief Convertitore di unità di misura della temperatura (Celsius/Fahrenheit).
+ * * Presenta un menu interattivo che permette all'utente di scegliere la
+ * direzione della conversione (da Celsius a Fahrenheit o viceversa) o di
+ * uscire dal programma. Gestisce i calcoli tramite formule matematiche
+ * applicate a variabili di tipo a virgola mobile (float/double).
+ * * @return int Restituisce 0 in caso di esecuzione corretta.
+ */
+ 
+ #include <iostream>
+ 
+ using namespace std;
+ int main(){
+     
+     int scelta;
+     float temp;
+     float new_temp;
+     
+     cout << "====CONVERTITORE TEMPERATURA====" << endl;
+     cout << "    1. Celsius -> Farenheit" << endl;
+     cout << "    2. Farenheit -> Celsius" << endl;
+     cout << "    3. Uscita" << endl;
+     
+     cin >> scelta;
+     
+     switch(scelta){
+         
+         case 1:
+            cout << "Hai scelto: Celsius -> Farenheit" << endl;
+            cout << "Che temperatura vuoi convertire?: ";
+            cin >> temp;
+            new_temp = (temp * 9.0/5.0) + 32;
+            cout << temp << "°C" << " -> " << new_temp << "°F";
+            break;
+            
+        case 2:
+            cout << "Hai scelto: Farenheit -> Celsius" << endl;
+            cout << "Che temperatura vuoi convertire?: ";
+            cin >> temp;
+            new_temp = (temp - 32) * 5.0 /9.0;
+            cout << temp << "°F" << " -> " << new_temp << "°C";
+            break;
+            
+        case 3:
+            cout << "Sto uscendo..." << endl;
+            return 0;
+            
+        default:
+            cout << "Operazione  non consentita, sto uscendo" << endl;
+            return 1;
+            
+     }
+     
+     return 0;
+ }

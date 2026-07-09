@@ -1,0 +1,57 @@
+/********************************************
+ * Crea una classe base chiamata "Contenuto".
+ * Deve includere:
+ * - Un attributo pubblico 'string titolo'.
+ * - Un costruttore per impostare il titolo.
+ * - Il distruttore virtuale.
+ * - Un metodo virtuale 'riproduci()' che stampa "Riproduzione avviata...".
+ * * Crea una classe figlia chiamata "Film" che eredita da Contenuto:
+ * - Deve sovrascrivere 'riproduci()' usando 'override' per stampare:
+ * "Il film [titolo] sta partendo. Buona visione al cinema!"
+ * * Nel main:
+ * - Crea un puntatore alla classe base Contenuto che punta a un oggetto Film.
+ * - Avvia la riproduzione usando la freccia (->) e pulisci la memoria con delete.
+ ********************************************/
+ 
+ 
+ 
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Contenuto{
+public: string titolo;
+    
+    Contenuto(string t){
+        titolo = t;
+    }
+    
+    virtual ~Contenuto(){}
+    
+    virtual void riproduci(){
+        cout << "Sto riproducendo un contenuto generico" << endl;
+    }
+    
+};
+
+
+class Film: public Contenuto{
+public:
+    Film(string t) : Contenuto(t){}
+    
+    void riproduci() override{
+        cout << "Sto riproducendo: " << titolo << endl;
+    }
+};
+
+int main(){
+    
+    Contenuto* f1 = new Film("Tenet");
+    
+    f1 -> riproduci();
+    
+    delete f1;
+    
+    return 0;
+}

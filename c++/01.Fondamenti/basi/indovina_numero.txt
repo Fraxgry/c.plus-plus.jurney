@@ -1,0 +1,34 @@
+// chiede all'utente di indovinare un nhmero hardcoded
+// alla riuscita dell'utente stampa Indovinato e il numero di tentativi
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+
+    int numeroSegreto = 37;
+    int tentativoUtente;
+    int contatore = 1;
+   
+    cout<<"Indovina il numero: ";
+    cin>>tentativoUtente;
+   
+    while(tentativoUtente != numeroSegreto){
+       
+        if(tentativoUtente > numeroSegreto){
+            cout<<"Troppo alto,  riprova: ";
+           
+        }else if(tentativoUtente < numeroSegreto){
+            cout<<"Troppo basso, riprova: ";
+           
+        }
+       
+        contatore++;
+        cin>>tentativoUtente;
+       
+    }cout<<"Indovinato in: "<<contatore<<" tentativi";
+   
+   
+    return 0;
+}

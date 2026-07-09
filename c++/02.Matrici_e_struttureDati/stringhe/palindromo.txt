@@ -1,0 +1,52 @@
+/**
+ * @file verifica_palindromo.cpp
+ * @brief Controlla se la parola inserita è palindroma (si legge uguale da sinistra e da destra).
+ * @param string parola La parola da analizzare.
+ * @return int Restituisce 0 alla fine dell'esecuzione.
+ */
+ 
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+bool palindromo(string frase){
+    
+    vector<char> normale;
+    vector<char> invertita;
+    bool palindromo = true;
+    
+    for(int i = 0; i < frase.size(); i++){
+        if(frase[i] != ' '){
+            normale.push_back(frase[i]);
+        }
+    }
+     
+    for(int i = frase.size()-1; i >= 0; i--){
+        if(frase[i] != ' '){
+            invertita.push_back(frase[i]);
+        }
+    }
+    for(int i = 0; i < normale.size(); i++){
+        if(normale[i] != invertita[i]){
+            palindromo = false;
+        }
+    }
+    return palindromo;
+}
+
+int main(){
+    
+    string frase;
+    
+    cout << "Inserisci la frase che vuoi verificare: " << endl;
+    getline(cin, frase);
+    bool verifica = palindromo(frase);
+    if(verifica == false){
+        cout << "Non è palindroma";
+    }else{
+        cout << "E' palindroma";
+    }
+    return 0;
+}

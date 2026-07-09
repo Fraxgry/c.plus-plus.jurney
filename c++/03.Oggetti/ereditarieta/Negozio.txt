@@ -1,0 +1,67 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class Prodotto{
+    
+private:
+    float prezzo;
+public:
+    string nome;
+    
+    Prodotto(string n, float p){
+        nome = n;
+        set_prezzo(p); // manteniamo blindato l'attributo prezzo usando il set anche nel costruttore
+    }
+    
+    float get_prezzo(){
+        return prezzo;
+    }
+    
+    void set_prezzo(float nuovo_prezzo){
+        if(nuovo_prezzo > 0){
+            prezzo = nuovo_prezzo;
+        }else{
+            prezzo = 0;
+        }
+    }
+};
+
+class Elettronica : public Prodotto{
+public:
+    int garanzia_mesi;
+    
+    Elettronica(string n, float p, int g) : Prodotto(n,p){
+        garanzia_mesi = g;
+    }
+    
+};
+
+
+void somma(vector<Elettronica> &lista){
+    
+    float somma = 0;
+    for(int i = 0; i < lista.size(); i++){
+        somma+=lista[i].get_prezzo();
+    }
+    
+    cout << "La somma dei prezzi è: " << somma << endl;
+}
+
+int main(){
+    
+    Elettronica e1("Smartphone", 699.99, 24);
+    Elettronica e2("Computer", 1199.00, 24);
+    Elettronica e3("Cuffie", 49.99, 12);
+    
+    vector<Elettronica> negozio;
+    negozio.push_back(e1);
+    negozio.push_back(e2);
+    negozio.push_back(e3);
+    
+    somma(negozio);
+    
+    return 0;
+}

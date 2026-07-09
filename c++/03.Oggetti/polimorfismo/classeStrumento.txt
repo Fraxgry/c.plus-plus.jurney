@@ -1,0 +1,55 @@
+/********************************************
+ * Crea una classe base chiamata "Strumento".
+ * Deve INCLUDEre:
+ * - Un attributo pubblico 'string nome'.
+ * - Un costruttore per impostare il nome dello strumento.
+ * - Il distruttore virtuale.
+ * - Un metodo virtuale 'suona()' che stampa "Lo strumento emette un suono".
+ * * Crea una classe figlia chiamata "Chitarra" che eredita da Strumento:
+ * - Deve sovrascrivere 'suona()' usando 'override' per stampare:
+ * "La chitarra [nome] fa: Sdrum Sdrum!"
+ * * Nel main:
+ * - Crea un puntatore alla classe base Strumento che punta a un oggetto Chitarra.
+ * - Fai suonare lo strumento usando la freccia (->) e libera la memoria con delete.
+ ********************************************/
+ 
+ 
+ 
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Strumento{
+public: string nome;
+    
+    Strumento(string n){
+        nome = n;
+    }
+    
+    virtual ~Strumento() {}
+    
+    virtual void suona(){
+        cout << "Sto suonando" << endl;
+    }   
+};
+
+class Chitarra: public Strumento{
+public:
+    Chitarra(string n) : Strumento(n){}
+    
+    void suona() override{
+        cout <<"La chitarra sta suonando" << endl;
+    }
+};
+
+int main(){
+    
+    Strumento* c1 = new Chitarra("Chitarra");
+    
+    c1->suona();
+    
+    delete c1;
+    
+    return 0;
+}

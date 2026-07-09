@@ -1,0 +1,47 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+class Spada{
+public:
+    string nome;
+    int danno_base;
+    int durability;
+   
+    void usa()
+    {
+       
+        durability -= 5;
+        cout << "Used" << nome << "! Durability left: " << durability << endl;
+       
+    }
+   
+    void affila()
+    {
+        if(durability < 100)
+        {
+            durability = 100;
+            danno_base += 2;
+            cout << "Durability restored";
+        }else{
+            cout << "Already max";
+        }
+       
+       
+    }
+   
+};
+
+int main()
+{
+    Spada spada;
+   
+    spada.nome = "Excalibur";
+    spada.danno_base = 50;
+    spada.durability = 100;
+   
+    spada.usa();
+    spada.affila();
+   
+    return 0;
+}

@@ -1,0 +1,60 @@
+/********************************************
+ *Crea una classe chiamata "Rettangolo".
+La classe deve memorizzare due misure: base e altezza (usa float o double).
+Deve includere i seguenti metodi:
+- Un metodo per impostare o cambiare le dimensioni della base e dell'altezza (es. passando i valori come parametri).
+- Un metodo che calcola e restituisce (return) l'area del rettangolo.
+- Un metodo che calcola e restituisce (return) il perimetro del rettangolo.
+ */
+ 
+ #include <iostream>
+ 
+ using namespace std;
+ 
+class Rettangolo{
+public:
+     
+    float h;
+    float b;
+     
+    void cambia(float base, float altezza){
+        h = altezza;
+        b = base;
+    }
+     
+    float area(){
+        return b*h;
+    }
+     
+    float perimetro(){
+        return b*2+h*2;
+    }
+     
+};
+
+int main(){
+    
+    Rettangolo rettangolo;
+    
+    rettangolo.b = 3;
+    rettangolo.h = 4;
+    
+    cout << "Prima del cambio valori" << endl;
+    cout << "Perimetro: " << rettangolo.perimetro();
+    cout << endl;
+    cout << "Area: " << rettangolo.area();
+    cout << endl;
+    rettangolo.cambia(5, 7);
+    cout << "Dopo il cambio valori" << endl;
+    cout << "Perimetro: " << rettangolo.perimetro();
+    cout << endl;
+    cout << "Area: " << rettangolo.area();
+    rettangolo.cambia(5.5, 7.7);
+    cout << "Dopo il cambio valori" << endl;
+    cout << "Perimetro: " << rettangolo.perimetro();
+    cout << endl;
+    cout << "Area: " << rettangolo.area();
+}
+
+
+

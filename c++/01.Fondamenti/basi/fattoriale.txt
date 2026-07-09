@@ -1,0 +1,45 @@
+/**
+ * @file calcolatore_fattoriale.cpp
+ * @brief Calcolo del fattoriale di un numero intero con validazione dell'input.
+ * * Il programma richiede all'utente l'inserimento di un numero intero positivo.
+ * Gestisce la validazione dell'input tramite un ciclo per rifiutare valori
+ * negativi. Successivamente, calcola il fattoriale (n!) del numero inserito
+ * e mostra il risultato a schermo.
+ * * @return int Restituisce 0 in caso di esecuzione corretta.
+ */
+ 
+ #include <iostream>
+ 
+ using namespace std;
+ int main(){
+     
+     int numero;
+     int fattoriale;
+     
+
+     
+     do{
+         cout << "Inserire il numero del quale vuoi calcolare il fattoriale" << endl;
+         cout << "Ricorda, il numero deve essere positivo: " << endl;
+         cin >> numero;
+         
+         
+     }while(numero < 0);
+     
+     if(numero == 0){
+         cout << "Il fattoriale di " << numero << " è 1" << endl;
+         return 0;
+     }
+     
+     fattoriale = numero;
+     
+     for(int i = numero-1; i > 0; i--){
+         fattoriale = fattoriale * i;
+     }
+     
+     
+    
+     cout << "Il fattoriale di " << numero << " è " << fattoriale;
+     
+     return 0;
+ }

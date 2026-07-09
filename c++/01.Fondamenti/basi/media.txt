@@ -1,0 +1,39 @@
+/**
+ @file media_voti.cpp
+ Il programma richiede all'utente il numero totale di voti da inserire.
+ Tramite un ciclo (for o while), acquisisce i singoli voti, ne calcola
+ la somma progressiva e infine mostra a schermo la media aritmetica.
+  @return int Restituisce 0 in caso di esecuzione corretta.
+ */
+ 
+ 
+#include <iostream>
+
+using namespace std;
+int main() {
+    
+    int n_voti = 0;
+    float somma = 0;
+    float media;
+    
+    
+    cout << "Quanti voti vuoi inserire?: ";
+    cin >> n_voti;
+    int contatore = n_voti;
+    
+    while(n_voti > 0){
+        
+        float voto;
+        
+        cout << "Inserisci il voto: ";
+        cin >> voto;
+        n_voti--;
+        somma = somma + voto;
+        
+    }
+    
+    media = somma / contatore;
+    cout << "la media dei voti è: " << media << endl;
+    
+    return 0;
+}

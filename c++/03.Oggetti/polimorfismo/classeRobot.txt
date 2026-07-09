@@ -1,0 +1,65 @@
+/********************************************
+ * Crea una classe base chiamata "Robot".
+ * La classe deve memorizzare il nome del robot (string).
+ * Deve includere:
+ * - Un costruttore per inizializzare il nome.
+ * - Un metodo virtuale 'esegui_compito()' che stampa un messaggio generico.
+ * * Crea una classe figlia chiamata "RobotSaldatore" che eredita da Robot:
+ * - Deve sovrascrivere il metodo 'esegui_compito()' usando 'override' per stampare l'azione specifica di saldatura.
+ * * Nel main:
+ * - Crea un puntatore alla classe base Robot che punta a un oggetto RobotSaldatore.
+ * - Avvia il robot usando la freccia (->) e libera la memoria con delete.
+ ********************************************/
+ 
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Robot{
+public:
+    string nome;
+    
+    Robot(string n){
+        nome = n;
+    }
+    
+    virtual ~Robot() {};
+                /****************************************************************************
+             * IL DISTRUTTORE VIRTUALE (~NomeClasse)
+             * Cos'è: È un metodo speciale che si attiva quando un oggetto viene eliminato.
+             * A cosa serve: Serve a liberare la memoria e a fare pulizia.
+             * Regola d'oro del Polimorfismo: Se una classe padre ha funzioni "virtual",
+             * il distruttore del padre DEVE essere "virtual" (es. virtual ~Robot() {}).
+             * Perché: Garantisce che, usando i puntatori, il C++ elimini l'intero oggetto 
+             * (sia la parte della classe figlia che quella del padre) evitando perdite di memoria.
+             ****************************************************************************/
+    
+    virtual void esegui_compito(){
+        cout << "Stampo il metodo del padre" << endl;
+    } 
+};
+
+class RobotSaldatore: public Robot{
+public:
+    RobotSaldatore(string n) : Robot(n){}
+    
+    void esegui_compito() override{
+        cout << "Sto saldando" << endl;
+    }
+};
+
+int main(){
+    
+    Robot r1("generico");
+    
+    Robot * r2 = new RobotSaldatore("saldino");
+    
+    r1.esegui_compito();
+    r2 -> esegui_compito();
+    
+    delete r2;
+ 
+ 
+ return 0;
+}

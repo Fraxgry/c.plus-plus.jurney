@@ -1,0 +1,42 @@
+/**
+ * @file radar_nemici.cpp
+ * @brief Scansione di una matrice ed estrazione di coordinate specifiche.
+ * * Il programma inizializza una mappa 5x5 contenente un giocatore e più nemici.
+ * Tramite una funzione di scansione, individua la presenza dei nemici e ne
+ * segnala la posizione esatta all'interno della griglia.
+ * * @return int Restituisce 0 in caso di esecuzione corretta.
+ */
+ 
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void scansiona(const vector<vector<int>> &matrice){
+    
+    int contatore = 0;
+    
+    for(int i = 0; i < matrice.size(); i++){
+        for(int j = 0; j < matrice[i].size(); j++){
+            if(matrice[i][j] == 2){
+                cout << "Nemico trovato in: " << i << ", " << j << endl;
+                contatore += 1;
+            }
+        }
+    }
+    cout << "Totale nemici: " << contatore << endl;
+}
+
+int main(){
+    
+    vector<vector<int>> mappa = {
+    {0, 0, 2, 0, 0},
+    {0, 0, 0, 0, 0},
+    {0, 0, 9, 0, 2},
+    {0, 0, 0, 0, 0},
+    {2, 0, 0, 0, 0}
+}; 
+    
+    scansiona(mappa);
+    return 0;
+}

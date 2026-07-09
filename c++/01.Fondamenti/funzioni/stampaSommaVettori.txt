@@ -1,0 +1,60 @@
+/**
+ * @file somma_vettore_funzione.cpp
+ * @brief Elaborazione di un vettore tramite più funzioni dedicate.
+ * * Il programma popola un std::vector tramite input utente, utilizza una funzione
+ * void per stamparlo e una funzione di tipo int per calcolare e restituire
+ * la somma di tutti i suoi elementi.
+ * * @return int Restituisce 0 in caso di esecuzione corretta.
+ */
+ 
+ #include <iostream>
+ #include <vector>
+ 
+ using namespace std;
+ 
+ int calcola_somma(const vector<int> &lista){ // & fa in modo che non faccia una copia del vettore ma che utilizzi quello originale
+     
+     int somma = 0;
+     
+     for(int i = 0; i < lista.size(); i++){
+         somma += lista[i];
+     }
+     
+     return somma;
+ }
+ 
+ void stampa(const vector<int> &lista){
+     
+     for(int i = 0; i < lista.size(); i++){
+         cout << lista[i] << " ";
+     }
+ }
+ 
+ int main(){
+     
+     vector<int> lista;
+     int n; //lunghezza della lista
+     int m; //elemento della lista
+     
+     cout << "Quanti elementi vuoi nella lista? " << endl;
+     
+     do{
+         cout << "La lista non puo essere vuota, inserisci un numero maggiore di 0: ";
+         cin >> n;
+     }while(n < 1);
+     
+     for(int i = 0; i < n; i++){
+         cout << "Inserisci gli elementi della lista: ";
+         cin >> m;
+         lista.push_back(m);
+     }
+     stampa(lista);
+     
+     cout << endl;
+     int somma = calcola_somma(lista);
+     
+     cout << somma;
+     
+     return 0;
+ }
+ 

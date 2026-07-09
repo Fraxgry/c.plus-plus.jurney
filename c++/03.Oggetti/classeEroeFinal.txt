@@ -1,0 +1,103 @@
+/*********************************************************************************************************
+ * IL BOSS FINALE: LA GILDA DEGLI EROI
+ * * Unione di tutti i concetti OOP: Incapsulamento, Ereditarietà, Astrazione, Polimorfismo e Memoria Dinamica.
+ * * 1. CLASSE ASTRATTA BASE: "Eroe"
+ * - Attributi privati (private): 'float punti_vita' (blindato all'esterno).
+ * - Attributi protetti (protected): 'string nome' (visibile solo alle classi figlie).
+ * - Costruttore: inizializza nome e punti_vita.
+ * - Distruttore virtuale: fondamentale per evitare memory leak nel main.
+ * - Metodo pubblico (public): un getter 'float get_vita()' che restituisce i punti_vita.
+ * - Metodo virtuale puro: 'virtual void esegui_azione() = 0;' (rende la classe astratta).
+ * * 2. CLASSE FIGLIA: "Guerriero" (Eredita da Eroe)
+ * - Attributi pubblici: 'int scudo'.
+ * - Costruttore: riceve nome, punti_vita (da passare al Padre) e scudo.
+ * - Metodo sovrascritto: implementa 'esegui_azione()' con 'override' e stampa:
+ * "Il Guerriero [nome] attacca con la spada e si protegge con lo scudo di livello [scudo]!"
+ * * 3. CLASSE FIGLIA: "Mago" (Eredita da Eroe)
+ * - Attributi pubblici: 'int mana'.
+ * - Costruttore: riceve nome, punti_vita (da passare al Padre) e mana.
+ * - Metodo sovrascritto: implementa 'esegui_azione()' con 'override' e stampa:
+ * "Il Mago [nome] lancia una magia consumando [mana] punti mana!"
+ * * 4. IL MAIN (Gestione della Gilda)
+ * - Crea un array di puntatori alla classe base di dimensione 3: Eroe* gilda[3];
+ * - Alloca dinamicamente con 'new' due Guerrieri e un Mago inserendoli nelle posizioni dell'array.
+ * - CICLO 1: Usa un ciclo for per far chiamare 'esegui_azione()' a tutti gli eroi tramite freccia (->).
+ * - CICLO 2: Usa un ciclo for per stampare il nome e la vita di ogni eroe sfruttando il getter pubblico.
+ * - CICLO 3: Usa un ciclo for finale per distruggere gli oggetti con 'delete' e ripulire la RAM.
+ *********************************************************************************************************/
+#include <iostream> 
+#include <string>
+
+using namespace std;
+
+class Eroe{
+private: float punti_vita;
+protected: string nome;
+public:
+    Eroe(string n, float hp){
+        nome = n;
+        punti_vita = hp;
+    }
+    
+    
+    float get_vita(){
+        return punti_vita;
+    }
+    
+    string get_nome(){
+        return nome;
+    }
+    
+    virtual ~Eroe(){}
+    
+    virtual void esegui_azione() = 0;
+};
+
+class Guerriero: public Eroe{
+public: int scudo;
+
+    Guerriero(string n, float hp, int s): Eroe(n, hp){
+        scudo = s;
+    }
+    
+    void esegui_azione() override{
+        cout << "Il Guerriero " << nome << " attacca con la spada e si protegge con lo scudo di livello "<< scudo << "!" << endl; 
+    }
+};
+
+class Mago: public Eroe{
+public: int mana;
+
+    Mago(string n, float hp, int m): Eroe(n, hp){
+        mana = m;
+    }
+    
+    void esegui_azione() override{
+        cout << "Il Mago " << nome << " lancia una magia consumando  "<< mana << " punti mana" << endl;
+    }
+};
+
+int main(){
+    
+    Eroe* gilda[3];
+    
+    Eroe* g1 = new Guerriero("Ganchelot", 100, 16);
+    Eroe* m1 = new Mago("Udini", 100, 100);
+    Eroe* g2 = new Guerriero("Lancillotto", 120, 20);
+    
+    gilda[0] = g1;
+    gilda[1] = m1;
+    gilda[2] = g2;
+    
+    for(int i = 0; i < 3; i++){
+        gilda[i]->esegui_azione();
+        cout << gilda[i]->get_nome() << " ha " << gilda[i]->get_vita() << " punti vita" << endl;
+    }
+    
+    for(int i = 0; i < 3; i++){
+        delete gilda[i];
+        cout << "Libero: " << gilda[i] << endl;
+    }
+    return 0;
+}
+   

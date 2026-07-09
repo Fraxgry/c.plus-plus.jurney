@@ -1,0 +1,27 @@
+/**
+ * @file saluto_personalizzato.cpp
+ * @brief Stampa un messaggio di benvenuto tramite una funzione di tipo void.
+ * * Il programma richiede il nome dell'utente nel main, lo passa a una funzione
+ * dedicata che si occupa esclusivamente di visualizzare il saluto a schermo.
+ * * @return int Restituisce 0 in caso di esecuzione corretta.
+ */
+ 
+ #include <iostream>
+ 
+ using namespace std;
+ 
+ void benvenuto(string nome){
+     cout << "Benvenuto alla tua lezione di c++ " << nome << endl;
+ }
+ 
+ int main(){
+     
+     string nome;
+     
+     cout << "Come ti chiami: ";
+     getline(cin, nome);
+     
+    benvenuto(nome);
+     
+     return 0;
+ }

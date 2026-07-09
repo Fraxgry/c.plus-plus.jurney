@@ -1,0 +1,86 @@
+/****************************************************************************
+ * LE CLASSI ASTRATTE E FUNZIONI VIRTUALI PURE
+ * * Crea una classe base chiamata "Dipendente".
+ * Deve includere:
+ * - Un attributo pubblico 'string nome'.
+ * - Un costruttore per impostare il nome.
+ * - Il distruttore virtuale.
+ * - Una funzione virtuale PURA 'calcola_stipendio()' che ritorna un float.
+ * Sintassi: virtual float calcola_stipendio() = 0;
+ * (Nota: Questo rende "Dipendente" una classe astratta, non potrai creare oggetti Dipendente normali).
+ * * * Crea una classe figlia "DipendenteFisso" che eredita da Dipendente:
+ * - Ha un attributo float 'stipendio_mensile'.
+ * - Il costruttore inizializza nome (passandolo al padre) e stipendio_mensile.
+ * - Sovrascrive 'calcola_stipendio()' e ritorna semplicemente lo stipendio mensile.
+ * * * Crea una classe figlia "DipendenteAProvvigione" che eredita da Dipendente:
+ * - Ha due attributi float: 'numero_vendite' e 'valore_provvigione'.
+ * - Il costruttore inizializza nome, numero_vendite e valore_provvigione.
+ * - Sovrascrive 'calcola_stipendio()' e ritorna il risultato di: numero_vendite * valore_provvigione.
+ * * * Nel main:
+ * - Crea un puntatore Dipendente* che punta a un DipendenteFisso.
+ * - Crea un secondo puntatore Dipendente* che punta a un DipendenteAProvvigione.
+ * - Stampa lo stipendio di entrambi usando la freccia (->) e poi libera la memoria di entrambi.
+ ****************************************************************************/
+ 
+ 
+ 
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Dipendente{
+    
+public: string nome;
+
+    Dipendente(string n){
+        nome = n;
+    }
+    
+    virtual ~Dipendente(){}
+    
+    virtual float calcola_stipendio() = 0;  
+};
+
+class DipendenteFisso: public Dipendente{
+public: float stipendio_mensile;
+    
+    DipendenteFisso(string n, float s): Dipendente(n){
+        stipendio_mensile = s;
+    }
+    
+    float calcola_stipendio() override{
+        return stipendio_mensile;  
+    }
+    
+    
+};
+
+class DipendenteAProvvigione: public Dipendente{
+public: float numero_vendite, valore_provvigione;
+
+    DipendenteAProvvigione(string n, float n_v, float v): Dipendente(n){
+        numero_vendite = n_v;
+        valore_provvigione = v;
+    }
+    
+    float calcola_stipendio() override{
+        return numero_vendite * valore_provvigione;
+    }
+    
+    
+};
+
+int main(){
+    
+    Dipendente* elena = new DipendenteFisso("Elena", 1845.50);
+    Dipendente* francesco = new DipendenteAProvvigione("Francesco", 20, 35.78);
+    
+    cout << "Elena prende: " << elena->calcola_stipendio() << endl;
+    cout << "Francesco prende: " << francesco->calcola_stipendio() << endl;;
+    
+    delete elena;
+    delete francesco;
+    
+    return 0;
+}

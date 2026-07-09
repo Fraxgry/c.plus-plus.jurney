@@ -1,0 +1,109 @@
+/*
+============================================================================
+ESERCIZIO FINALE: LA GESTIONE DELLA CONCESSIONARIA
+============================================================================
+Obiettivo:
+Gestire un parco veicoli applicando l'incapsulamento, l'ereditarietà 
+e gli algoritmi di filtraggio su un vettore di oggetti.
+
+Struttura del codice:
+1. Classe 'Veicolo' (Padre):
+   - Attributo pubblico: marca (string)
+   - Attributo privato: prezzo (float)
+   - Metodi: Costruttore, get_prezzo() e set_prezzo() con controllo >= 0.
+
+2. Classe 'AutoElettrica' (Figlia):
+   - Eredita da Veicolo.
+   - Metodo 'applica_incentivo(float sconto)': modifica il prezzo del veicolo
+     sottraendo lo sconto tramite i metodi getter e setter del padre.
+
+3. Funzione Esterna 'stampa_auto_economiche':
+   - Riceve il vettore e un prezzo limite.
+   - Stampa solo le auto con un prezzo inferiore al limite stabilito.
+============================================================================
+*/
+
+
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class Veicolo{
+private: 
+    float prezzo;
+public : 
+    string marca;
+
+    Veicolo(string m, float p){
+        marca = m;
+        set_prezzo(p);
+    }
+    
+    void set_prezzo(float nuovo_prezzo){
+        if(nuovo_prezzo > 0){
+            prezzo = nuovo_prezzo;
+        }else{
+            prezzo = 0;
+        }
+    }
+        
+     float get_prezzo(){
+        return prezzo;
+    }
+};
+
+class Elettrica : public Veicolo{
+public:
+
+    Elettrica(string m, float p) : Veicolo(m, p){
+        set_prezzo(p);
+    }
+     
+    void applica_incentivo(float sconto){
+        float prezzo_attuale = get_prezzo();
+         
+        if(prezzo_attuale - sconto > 0){
+             set_prezzo(prezzo_attuale - sconto);
+        }else{
+         cout << "Impossibile applicare lo sconto" << endl;
+        }
+    }
+
+};
+
+
+void stampa_macchina_economica(vector<Elettrica> &lista, int limite){
+    
+    cout << "Ecco le macchine che costano meno di " << limite << " euro." << endl;
+    for(int i = 0; i < lista.size(); i++){
+        if(lista[i].get_prezzo() < limite){
+            cout << lista[i].marca << " costa: " << lista[i].get_prezzo() << endl;
+        }
+    }
+}
+int main(){
+    
+    // Creazione delle 3 auto elettriche
+    Elettrica a1("Tesla", 45000.0);
+    Elettrica a2("Fiat500", 28000.0);
+    Elettrica a3("Renault", 22000.0);
+    
+    // Creazione del vettore e inserimento delle auto
+    vector<Elettrica> parco_auto;
+    parco_auto.push_back(a1);
+    parco_auto.push_back(a2);
+    parco_auto.push_back(a3);
+    
+    parco_auto[1].applica_incentivo(3000);
+    
+    cout << "Prima del cambio: " << endl;
+    for(int i = 0; i < parco_auto.size(); i++){
+        cout << parco_auto[i].marca << " costa: " << parco_auto[i].get_prezzo() << endl;
+    }
+    
+    stampa_macchina_economica(parco_auto, 30000);
+    
+    return 0;
+}

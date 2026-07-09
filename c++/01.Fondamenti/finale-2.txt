@@ -1,0 +1,86 @@
+/**
+ * @file inventario_completo.cpp
+ * @brief Test totale: gestione di un inventario tramite menu, switch e funzioni.
+ * * Il programma permette di gestire un vettore tramite un menu interattivo.
+ * Include l'aggiunta di elementi, la stampa tramite funzione void e il calcolo
+ * del totale tramite funzione int.
+ * * @return int Restituisce 0 in caso di esecuzione corretta.
+ */
+ 
+#include <iostream>
+#include <vector>
+ 
+using namespace std;
+
+
+void mostra_inventario(const vector<int> &lista){
+    
+    for(int i = 0; i < lista.size(); i ++){
+        cout << lista[i] << " ";
+        }
+        
+    cout << endl;
+}
+
+int conta_monete(const vector<int> &lista){
+    
+    int somma = 0;
+    
+    for(int i = 0; i < lista.size(); i ++){
+        somma += lista[i];
+    }
+    return somma;
+}
+
+int main(){
+    
+    vector<int> inventario;
+    int scelta;
+    int monete;
+    int totale;
+    
+    do{
+        cout << "========C++ GDR========" << endl;
+        cout << "          Menu" << endl;
+        cout << "1. Aggiungi monete" << endl;
+        cout << "2. Mostra inventario" << endl;
+        cout << "3. Calcola il totale delle monete" << endl;
+        cout << "4. Esci" << endl;
+        
+        cout << "Cosa scegli?: ";
+        cin >> scelta;
+       
+        switch(scelta){
+            case 1:
+                cout << "Quante monete vuoi aggiungere?: ";
+                cin >> monete;
+                inventario.push_back(monete);
+                break;
+                
+            case 2:
+                mostra_inventario(inventario);
+                break;
+        
+            case 3:
+                totale = conta_monete(inventario);
+                cout << "Hai un totale di: " << totale << " monete nell'inventario" << endl;
+                break;
+                
+            case 4:
+                cout << "Chiudo gioco...";
+                break;
+                
+            default:
+                cout << "Opzione non valida";
+                break;
+
+        }
+           
+    } while(scelta != 4);
+ 
+    return 0;
+}
+ 
+ 
+ 
+ 

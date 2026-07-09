@@ -1,0 +1,51 @@
+/**
+ * @file filtro_pari.cpp
+ * @brief Filtra i numeri pari inseriti dall'utente in un vettore separato.
+ * * Il programma accetta numeri interi dall'utente fino all'inserimento di 0.
+ * Memorizza i dati in un std::vector iniziale, estrae i soli elementi pari
+ * inserendoli in un secondo std::vector e infine stampa il risultato.
+ * * @return int Restituisce 0 in caso di esecuzione corretta.
+ */
+ 
+#include <iostream>
+#include <vector>
+
+using namespace std;
+int main(){
+    
+    int n;
+    vector<int> lista;
+    vector<int> lista_pari;
+    vector<int> lista_dispari;
+    
+    cout << "Questo programma, data una lista di numeri interi, divide i pari dai dispari" << endl;
+    cout << "Inserisci tanti numeri quanto ritieni necessario, alla fine inserisci 0 per terminare la raccolta" << endl;
+    
+    do{
+        cout << "Inserisci il numero: ";
+        cin >> n;
+        lista.push_back(n);
+    }while(n != 0);
+    
+    for(int i = 0; i < lista.size() - 1; i++){
+        if(lista[i] % 2 == 0){
+            lista_pari.push_back(lista[i]);
+        }else{
+            lista_dispari.push_back(lista[i]);
+        }
+    }
+    
+    cout << "Lista dei pari:" << endl;
+    for(int i = 0; i < lista_pari.size(); i++){
+        cout << lista_pari[i] << " ";
+    }
+    
+    cout << endl;
+    
+    cout << "Lista dei dispari:" << endl;
+    for(int i = 0; i < lista_dispari.size(); i++){
+        cout << lista_dispari[i] << " ";
+    }
+    
+    return 0;
+}

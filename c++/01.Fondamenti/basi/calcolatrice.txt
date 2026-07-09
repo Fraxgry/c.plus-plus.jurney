@@ -1,0 +1,94 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+
+    int scelta;
+    float n1;
+    float n2;
+    float risultato;
+   
+    do{
+           
+        cout << "==== CALCOLATRICE ====\n" << endl;
+        cout << " 1. Somma" << endl;
+        cout << " 2. Sottrazione" << endl;
+        cout << " 3. Moltiplicazione" << endl;
+        cout << " 4. Divisione" << endl;
+        cout << " 5. Esci\n" << endl;
+       
+        cout << "Scrivi il codice dell'operazione che vuoi eseguire: ";
+        cin >> scelta;
+       
+        switch (scelta){
+           
+            case 1: // è tipo if(scelta == 1...)
+                cout << "Hai scelto Somma" << endl;
+                cout << "Dammi il primo numero: ";
+                cin >> n1;
+                cout << "Dammi il secondo numero: ";
+                cin >> n2;
+               
+                risultato = n1 + n2;
+                cout <<"Il risultato della somma è " << risultato << "\n" << endl;
+               
+                break;
+               
+            case 2:
+                cout << "Hai scelto Sottrazione" << endl;
+                cout << "Dammi il primo numero: ";
+                cin >> n1;
+                cout << "Dammi il secondo numero: ";
+                cin >> n2;
+               
+                risultato = n1 - n2;
+                cout <<"Il risultato della sottrazione è " << risultato << "\n" << endl;
+               
+                break;
+               
+            case 3:
+                cout << "Hai scelto Moltiplicazione" << endl;
+                cout << "Dammi il primo numero: ";
+                cin >> n1;
+                cout << "Dammi il secondo numero: ";
+                cin >> n2;
+               
+                risultato = n1 * n2;
+                cout <<"Il risultato della moltiplicazione è " << risultato << "\n" << endl;
+               
+                break;
+               
+            case 4:
+                cout << "Hai scelto Divisione" << endl;
+                cout << "Dammi il primo numero: ";
+                cin >> n1;
+                cout << "Dammi il secondo numero: ";
+                cin >> n2;
+               
+                if( n2 == 0){
+                    cout << "Impossibile dividere per 0, sto uscendo";
+                    return 1;
+                }
+               
+                risultato = n1 / n2;
+                cout <<"Il risultato della divisione è " << risultato << "\n" << endl;
+               
+                break;
+               
+            case 5:
+                cout << "Torna a trovarmi!!!" << "\n" << endl;
+                break;
+               
+            default:
+                cout << "Operazione non valida, sto uscendo..." << "\n" << endl;
+                break;
+           
+        }
+    } while(scelta != 5);
+   
+
+   
+    return 0;
+}

@@ -1,0 +1,23 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    string nome;
+    int eta;
+   
+    cout<<"Come ti chiami?: ";
+    getline(cin, nome); //getline consente di prendere stringhe contenenti spazi
+    cout<<"Ciao "<< nome<<", quanti anni hai?: ";
+    cin>>eta;
+    cout<<"Hai "<< eta<<" anni ";
+    if(eta>17){
+        cout<<"quindi sei maggiorenne.";
+    }else{
+        cout<<"quindi sei minorenne.";
+    }
+   
+
+    return 0;
+}

@@ -1,0 +1,58 @@
+/********************************************
+ *Crea una classe chiamata "ContoBancario".
+La classe deve contenere come attributi il nome del titolare (string) e il saldo attuale (double o float).
+Deve includere i seguenti metodi:
+- Un metodo per depositare una somma di denaro (aumenta il saldo della cifra passata come parametro).
+- Un metodo per prelevare una somma di denaro. Questo metodo deve controllare se 
+  i soldi sono sufficienti: se lo sono, riduce il saldo; altrimenti, mostra un 
+  messaggio di errore impedendo il prelievo.
+- Un metodo per stampare la situazione attuale del conto (Nome titolare e Saldo).
+ */
+ 
+ #include <iostream>
+ #include <string>
+ 
+ using namespace std;
+ 
+class ContoBancario{
+public:
+     
+    string titolare;
+    float saldo;
+     
+    void deposita(float soldi){
+        saldo += soldi;
+    }
+     
+    void preleva(float soldi){
+        if(saldo >= soldi){
+            saldo -= soldi;
+        }else{
+            cout << "Saldo insufficiente" << endl;
+        }
+    }
+    
+    void stampa(){
+        cout << "Titolare: " << titolare << endl;
+        cout << "Saldo: " << saldo << endl;       
+    }
+};
+
+int main(){
+    
+    ContoBancario mioconto;
+    
+    mioconto.titolare = "Francesco";
+    mioconto.saldo = 30;
+    
+    mioconto.stampa();
+    mioconto.deposita(40);
+    mioconto.stampa();
+    mioconto.preleva(20);
+    mioconto.stampa();
+    mioconto.preleva(80);
+    mioconto.stampa();
+}
+
+
+

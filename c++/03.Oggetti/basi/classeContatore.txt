@@ -1,0 +1,47 @@
+/********************************************
+ * Crea una classe chiamata "Contatore". 
+La classe deve avere un attributo intero per tenere traccia del valore attuale.
+Deve includere i seguenti metodi:
+- Un metodo per azzerare il contatore.
+- Un metodo per incrementare il valore di 1.
+- Un metodo per mostrare a schermo il valore corrente.
+ */
+ 
+ #include <iostream>
+ 
+ using namespace std;
+ 
+class Contatore{
+public:
+     
+    int contatore = 0;
+     
+    void azzera(){
+        contatore = 0;
+    }
+     
+    void aumenta(){
+        contatore++;
+    }
+     
+    void stampa(){
+        cout << contatore;
+        cout << endl;
+    }
+     
+};
+
+int main(){
+    
+    Contatore conta;
+    
+    conta.contatore = 100;
+    
+    conta.stampa();
+    conta.aumenta();
+    conta.azzera();
+    conta.stampa();
+}
+
+
+

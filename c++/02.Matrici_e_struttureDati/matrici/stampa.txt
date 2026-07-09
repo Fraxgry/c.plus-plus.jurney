@@ -1,0 +1,32 @@
+/**
+ * @file mappa_dungeon.cpp
+ * @brief Introduzione alle matrici: inizializzazione e stampa di una griglia 2D.
+ * * Il programma definisce un vettore bidimensionale (vector<vector<int>>)
+ * che rappresenta una mappa di gioco e la stampa a schermo mantenendo
+ * la formattazione a griglia tramite cicli annidati.
+ * * @return int Restituisce 0 in caso di esecuzione corretta.
+ */
+
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main() {
+    // Definizione della griglia 3x3
+    vector<vector<int>> mappa = {
+        {1, 0, 1},
+        {0, 0, 0},
+        {1, 0, 1}
+    };
+    
+    for(int i = 0; i < mappa.size(); i++){
+        for(int j = 0; j < mappa[i].size(); j++){
+            cout << mappa[i][j];
+        }
+        cout << endl;
+    }
+
+    return 0;
+}

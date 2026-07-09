@@ -1,0 +1,169 @@
+/**
+ * @file dungeon_completo.cpp
+ * @brief Progetto finale: motore di gioco 2D con collisioni, raccolta oggetti e scansione.
+ * * Il programma unisce tutte le competenze acquisite: gestione di una griglia,
+ * funzioni di stampa e scansione per riferimento, logica di movimento interattiva,
+ * controllo delle collisioni e gestione del punteggio.
+ * * @return int Restituisce 0 in caso di esecuzione corretta.
+ */
+ 
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void stampa_mappa(vector<vector<int>> &matrice){
+    
+    for(int i = 0; i < matrice.size(); i++){
+        for(int j = 0; j < matrice[i].size(); j++){
+            cout << matrice[i][j] << " ";
+        }
+        cout << endl;
+        
+    }
+}
+
+
+void scansiona_tesori(vector<vector<int>> &matrice){
+    
+    int contatore = 0;
+    
+    for(int i = 0; i < matrice.size(); i++){
+        for(int j = 0; j < matrice[i].size(); j++){
+            if(matrice[i][j] == 5){
+                cout << "Tesoro trovato a: " << i << ", " << j << endl;
+                contatore += 1;
+            }
+        }
+    }
+    cout << "Totale tesori: " << contatore << endl;
+}
+
+int main(){
+    
+    vector<vector<int>> mappa = {
+    {1, 0, 5, 0, 3}, // Il 3 è l'uscita
+    {1, 1, 0, 1, 1},
+    {0, 5, 0, 0, 0},
+    {5, 1, 1, 1, 0},
+    {9, 0, 5, 0, 0}  // Il 9 parte qui
+};
+    char scelta;
+    int monete_trovate = 0;
+    int px = 4;
+    int py = 0;
+    
+    cout << "Benvenuto nel mio daungeon. Trova l'uscita e raccogli più tesori possibile!!" << endl;
+    cout << "===========COMANDI===========" << endl;
+    cout << "| -W per andare in su       |" << endl;
+    cout << "| -A per andare a sinistra  |" << endl;
+    cout << "| -S per andare in giù      |" << endl;
+    cout << "| -D per andare a destra    |" << endl;
+    cout << "| -Q per uscire             |" << endl;
+    cout << "=============================" << endl;
+    cout << endl;
+    cout << endl;
+    
+    scansiona_tesori(mappa);
+    cout << endl;
+    stampa_mappa(mappa);
+    
+    do{
+        
+        cin >> scelta;
+        
+        switch(scelta){
+            
+            case 'w':
+                if( px - 1 < 0 || mappa[px-1][py] == 1){
+                    cout << "Strada bloccata!!\n" << endl;
+                }else{
+                    if(mappa[px-1][py] == 5){
+                        monete_trovate += 1;
+                        cout << "Tesoro trovato!!\n" << endl;
+                    }else if(mappa[px-1][py] == 3){
+                        cout << "Hai trovato l'uscita!!" << endl;
+                        cout << "Hai trovato: " << monete_trovate << " monete";
+                        return 0;
+                    }
+                    mappa[px][py] = 0;
+                    px -= 1;
+                    mappa[px][py] = 9;
+                }
+                stampa_mappa(mappa);
+                
+                break;
+                
+            case 's':
+                if( px + 1 >4 || mappa[px+1][py] == 1){
+                    cout << "Strada bloccata!!\n" << endl;
+                }else{
+                    if(mappa[px+1][py] == 5){
+                        monete_trovate += 1;
+                        cout << "Tesoro trovato!!\n" << endl;
+                    }else if(mappa[px+1][py] == 3){
+                        cout << "Hai trovato l'uscita!!" << endl;
+                        cout << "Hai trovato: " << monete_trovate << " monete";
+                        return 0;
+                    }
+                    mappa[px][py] = 0;
+                    px += 1;
+                    mappa[px][py] = 9;
+                }
+                stampa_mappa(mappa);
+                
+                break;
+                
+            case 'a':
+                if( py - 1 < 0 || mappa[px][py-1] == 1){
+                    cout << "Strada bloccata!!\n" << endl;
+                }else{
+                    if(mappa[px][py - 1] == 5){
+                        monete_trovate += 1;
+                        cout << "Tesoro trovato!!\n" << endl;
+                    }else if(mappa[px][py-1] == 3){
+                        cout << "Hai trovato l'uscita!!" << endl;
+                        cout << "Hai trovato: " << monete_trovate << " monete";
+                        return 0;
+                    }
+                    mappa[px][py] = 0;
+                    py -= 1;
+                    mappa[px][py] = 9;
+                }
+                stampa_mappa(mappa);
+                
+                break;
+                
+            case 'd':
+                if( py + 1 > 4 || mappa[px][py+1] == 1){
+                    cout << "Strada bloccata!!\n" << endl;
+                }else{
+                    if(mappa[px][py + 1] == 5){
+                        monete_trovate += 1;
+                        cout << "Tesoro trovato!!\n" << endl;
+                    }else if(mappa[px][py + 1] == 3){
+                        cout << "Hai trovato l'uscita!!" << endl;
+                        cout << "Hai trovato: " << monete_trovate << " monete";
+                        return 0;
+                    }
+                    mappa[px][py] = 0;
+                    py += 1;
+                    mappa[px][py] = 9;
+                }
+                stampa_mappa(mappa);
+                
+                break;
+                
+            case 'q':
+                cout << "Sto uscendo dal gioco" << endl;
+                return 0;
+                
+            default:
+                cout << "Comando non utilizzabile" << endl;
+        }
+        
+        
+    }while(scelta != 'q');
+    
+    return 0;
+}

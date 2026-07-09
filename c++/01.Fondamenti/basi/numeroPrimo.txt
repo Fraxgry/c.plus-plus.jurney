@@ -1,0 +1,47 @@
+/**
+ * @file numero_primo.cpp
+ * @brief Verifica se un numero intero inserito dall'utente è primo.
+ * * Il programma richiede all'utente un numero intero maggiore di 1.
+ * Attraverso un ciclo for, verifica la presenza di divisori compresi tra
+ * 2 e il numero stesso (escluso). Utilizza un flag booleano per tenere traccia
+ * del risultato e ottimizza la ricerca interrompendo il ciclo con un break.
+ * * @return int Restituisce 0 in caso di esecuzione corretta.
+ */
+ 
+ #include <iostream>
+ 
+ using namespace std;
+ int main(){
+     
+      int n;
+      int divisori = 2;
+      
+      cout << "Dato un numero rilevo se è primo o no" << endl;
+      
+      do{
+          cout << "Il numero deve essere maggiore di 1" << endl;
+          cout << "Qual è il numero che vuoi verificare?: ";
+          cin >> n;
+          
+          
+      }while(n < 2);
+      
+      if(n == 2){
+          cout << "Il 2 è primo";
+          return 0;
+      }
+      
+      for(int i = 2; i <= n/2; i++){
+          if(n % i == 0){
+              divisori += 1;
+          }
+      }
+      
+      if(divisori > 2){
+          cout << "Il numero " << n << " non è primo";
+      }else{
+          cout << "Il numero " << n << " è primo";
+      }
+      
+     return 0;
+ }

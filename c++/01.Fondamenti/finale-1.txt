@@ -1,0 +1,63 @@
+/**
+ * @file verifica_funzioni_vettori.cpp
+ * @brief Progetto riassuntivo: gestione e analisi di un vettore di punteggi.
+ * * Il programma richiede all'utente un numero di sessioni, valida l'input,
+ * popola un std::vector e utilizza due funzioni dedicate (una void e una int)
+ * per stampare i dati e trovare il valore massimo.
+ * * @return int Restituisce 0 in caso di esecuzione corretta.
+ */
+ 
+ #include <iostream>
+ #include <vector>
+ 
+ using namespace std;
+ 
+ 
+ void print(const vector<int> &lista){
+     
+     for(int i = 0; i < lista.size(); i ++){
+         cout << lista[i] << " ";
+     }
+ }
+ 
+ 
+ int massimo(const vector<int> &lista){
+     
+     int massimo = lista[0];
+     
+     for(int i = 0; i < lista.size(); i ++){
+         if(lista[i] > massimo){
+             massimo = lista[i];
+         }
+     }
+     return massimo;
+ }
+ 
+ int main(){
+     
+     vector<int> punteggi;
+     int n; //numero di elementi nel vettore
+     
+     cout << "Quanti punteggi vuoi inserire?" << endl;
+     
+     do{
+         cout << "Ricorda che il numero di elementi non puo essere minore di 1: ";
+         cin >> n;
+         
+     }while(n < 1);
+     
+     for(int i = 0; i < n; i ++){
+         int elemento;
+         cout << "Elemento " << i << ": ";
+         cin >> elemento;
+         punteggi.push_back(elemento);
+     }
+     
+     print(punteggi);
+     cout << endl;
+     int max_n = massimo(punteggi);
+     cout << max_n << " è il numero più grande della lista";
+     
+     
+     return 0;
+ }

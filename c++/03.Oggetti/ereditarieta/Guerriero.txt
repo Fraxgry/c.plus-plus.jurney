@@ -1,0 +1,76 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+class Personaggio {
+private:
+    int vita; // Privata e protetta!
+
+public:
+    string nome;
+
+    Personaggio(string n, int v) {
+        nome = n;
+        vita = v;
+    }
+
+    int get_vita() {
+        return vita;
+       
+    }
+   
+    void set_vita(int nuova_vita) {
+        if (nuova_vita < 0) vita = 0;
+        else vita = nuova_vita;
+    }
+};
+
+class Guerriero : public Personaggio{
+public:
+    int forza;
+   
+    Guerriero( string n, int v, int f) : Personaggio(n, v){
+        forza = f;
+    }
+   
+    void attacca(){
+        cout<<get_vita();
+       
+    }
+   
+   
+};
+
+void stampa_guerriero_piu_forte(vector<Guerriero> &lista){
+   
+   
+    int massimo = 0;// mi salvo l'indice del primo elemento assumendo che sia il maggiore e poi lo comparo con gli altri elementi, da qui l'algoritmo è il solito
+    for(int i = 0; i < lista.size(); i++){
+        if(lista[i].get_vita() > lista[massimo].get_vita()){
+            massimo = i;
+        }
+    }
+    cout << lista[massimo].nome;
+}
+
+
+   
+
+
+int main() {
+   
+    Guerriero g1("Ganchelot", 400, 39);
+    Guerriero g2("Thor", 550, 60);
+    Guerriero g3("Arturo", 350, 45);
+   
+    vector<Guerriero> squadra;
+    squadra.push_back(g1);
+    squadra.push_back(g2);
+    squadra.push_back(g3);
+   
+    stampa_guerriero_piu_forte(squadra);
+   
+    return 0;
+}

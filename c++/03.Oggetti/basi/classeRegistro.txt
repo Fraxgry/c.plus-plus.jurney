@@ -1,0 +1,69 @@
+/*
+ * Esercizio 4: Il Registro dei Voti (Gestione dei Vector nelle Classi)
+ * * Perché serve al Game Dev: In un videogioco, un personaggio non ha solo statistiche singole come la vita. 
+ * Spesso ha una lista dinamica di elementi, come le munizioni rimaste nel caricatore, le magie conosciute 
+ * o gli oggetti nell'inventario[cite: 42]. Questo esercizio ti insegna a inserire e manipolare un vector 
+ * direttamente dentro un oggetto.
+ * * Traccia:
+ * Crea una classe chiamata "RegistroStudenti".
+ * La classe deve avere come attributi:
+ * - Una stringa per il nome dello studente.
+ * - Un vettore (vector) di numeri decimali (float) per contenere i voti scolastici.
+ * * Deve includere i seguenti metodi:
+ * 1. Un metodo per aggiungere un nuovo voto (passato come parametro) dentro il vettore.
+ * 2. Un metodo che calcola e restituisce (return) la media matematica di tutti i voti inseriti fino a quel momento.
+ * 3. Un metodo che mostra a schermo se lo studente è promosso (media maggiore o uguale a 6) o bocciato.
+ */
+ 
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+class RegistroStudenti{
+public:
+    string nome;
+    vector<float> elenco_voti;
+  
+    void aggiungi_voto(float voto){
+        if(voto > 0 && voto <= 10){
+            elenco_voti.push_back(voto);
+        }
+    }
+    
+    float calcola_media(){
+        float somma = 0.0;
+        
+        if(elenco_voti.empty()){
+            return 0.0;
+        }
+        for(int i = 0; i < elenco_voti.size(); i++){
+            somma += elenco_voti[i];
+        }
+        
+        return somma/elenco_voti.size();
+    }
+    
+    void promozione(){
+        float media = calcola_media();
+        if(media >= 6){
+            cout << "Promosso";
+        }else{
+            cout << "Bocciato";
+        }
+    }
+
+};
+
+int main(){
+    
+    RegistroStudenti Studente1;
+    
+    Studente1.nome = "Francesco";
+    
+    Studente1.aggiungi_voto(8);
+    float media = Studente1.calcola_media();
+    Studente1.promozione();
+    return 0;
+}

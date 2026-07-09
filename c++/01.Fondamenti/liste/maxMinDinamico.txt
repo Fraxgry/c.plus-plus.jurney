@@ -1,0 +1,48 @@
+/**
+ * @file array_min_max.cpp
+ * @brief Ricerca del valore massimo e minimo in un array statico.
+ * * Il programma richiede all'utente l'inserimento di N numeri interi,
+ * li memorizza in un array a dimensione fissa e successivamente lo scansiona
+ * per determinare il valore maggiore e minore inseriti.
+ * * @return int Restituisce 0 in caso di esecuzione corretta.
+ */
+ 
+ #include <iostream>
+ #include <vector>
+ 
+ using namespace std;
+ int main(){
+     
+     
+    int N;
+    vector<int> lista;
+     
+    cout << "Data una lista di numeri trovo il massimo e il minimo" << endl;
+    cout << "Quanti elementi vuoi nella lista?" << endl;
+    cin >> N;
+     
+    for(int i = 0; i < N; i ++){
+        int n;
+        cout << "Inserisci il numero: ";
+        cin >> n;
+        lista.push_back(n);
+     }
+     
+    int lista_max = lista[0];
+    int lista_min = lista[0];
+     
+    for(int i = 0; i < N; i++){
+        if(lista[i] > lista_max){
+            lista_max = lista[i];
+        }
+        if(lista[i] < lista_min){
+            lista_min = lista[i];
+        }
+    }
+     
+     
+    cout << "Il maggiore tra i numeri è: " << lista_max << endl;
+    cout << "Il minore tra i numeri è: " << lista_min << endl;
+     
+    return 0;
+ }

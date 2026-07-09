@@ -1,0 +1,45 @@
+/**
+ * @file posiziona_giocatore.cpp
+ * @brief Modifica di un elemento specifico nella matrice tramite coordinate.
+ * * Il programma permette all'utente di inserire le coordinate X e Y (riga e colonna)
+ * per posizionare il personaggio (rappresentato dal numero 9) all'interno
+ * di una griglia vuota, modificando la matrice prima della stampa.
+ * * @return int Restituisce 0 in caso di esecuzione corretta.
+ */
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+int main(){
+    
+    int x;
+    int y;
+    
+    vector<vector<int>> mappa = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+    
+    for(int i = 0; i < mappa.size(); i++){
+        for(int j = 0; j < mappa[i].size(); j++){
+            cout << mappa[i][j] << " ";
+        }
+        cout << endl;
+    }
+    
+    cout <<"Inserisci la coordinata x: ";
+    cin >> x;
+    cout << "Inserisci la coordinata y";
+    cin >> y;
+    
+    mappa[x][y] = 9;
+    
+    for(int i = 0; i < mappa.size(); i++){
+        for(int j = 0; j < mappa[i].size(); j++){
+            cout << mappa[i][j] << " ";
+        }
+        cout << endl;
+    }
+    
+    
+    return 0;
+}

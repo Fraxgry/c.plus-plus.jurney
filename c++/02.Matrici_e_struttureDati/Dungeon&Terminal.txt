@@ -1,0 +1,294 @@
+/**
+ * @file mega_dungeon_rpg.cpp
+ * @brief Progetto di fine macro-modulo (Capitoli 1 e 2).
+ * * Unisce menu interattivi, strutture dati avanzate per il personaggio,
+ * matrici per la mappa dinamica, stringhe per la personalizzazione e
+ * funzioni con passaggio per riferimento per gestire i movimenti e i combattimenti.
+ * * @struct Personaggio
+ * - string nome: Nome inserito dall'utente.
+ * - string classe: Tipo di eroe (es. Guerriero, Ladro).
+ * - int x, y: Coordinate sulla mappa.
+ * - int attacco: Danno inflitto ai nemici.
+ * - int monete: Tesori raccolti.
+ * * @return int Restituisce 0 a fine esecuzione.
+ */
+ 
+
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+
+using namespace std;
+
+struct Personaggio{
+    string nome;
+    string classe;
+    int x, y, monete;
+   
+};
+
+void pulisci_schermo() {
+    #ifdef _WIN32
+        system("cls");
+    #else
+        system("clear");
+    #endif
+}
+
+
+void stampa_mappa(vector<vector<int>> &matrice){
+   
+    
+    for(int i = 0; i < matrice.size(); i++){
+        for(int j = 0; j < matrice[i].size(); j++){
+            cout << matrice[i][j] << " ";
+        }
+        cout << endl;
+    }
+}
+
+int scansiona_nemici(vector<vector<int>> &matrice){
+   
+    int nemici = 0;
+   
+    for(int i = 0; i < matrice.size(); i++){
+        for(int j = 0; j < matrice[i].size(); j++){
+            if(matrice[i][j] == 4){
+                nemici += 1;
+            }
+        }
+    }
+    return nemici;
+}
+
+int scansiona_tesori(vector<vector<int>> &matrice){
+   
+    int tesori = 0;
+   
+    for(int i = 0; i < matrice.size(); i++){
+        for(int j = 0; j < matrice[i].size(); j++){
+            if(matrice[i][j] == 5){
+                tesori += 1;
+            }
+        }
+    }
+    return tesori;
+}
+
+void inventario(Personaggio eroe){
+   
+    cout << "Hai " << eroe.monete << " monete nell'inventario";
+    cout << endl;
+
+}
+
+bool gioco(){
+    
+    struct Personaggio eroe;
+    
+    eroe.nome;
+    eroe.classe;
+    eroe.x = 9;
+    eroe.y = 0;
+    eroe.monete = 0;
+   
+    vector<vector<int>> mappa = {
+    {0, 1, 5, 0, 0, 5, 0, 1, 0, 3}, 
+    {0, 1, 0, 1, 1, 1, 0, 1, 4, 0}, 
+    {4, 0, 0, 0, 5, 1, 0, 0, 0, 0}, 
+    {1, 1, 1, 1, 0, 1, 1, 1, 1, 0}, 
+    {0, 5, 0, 1, 0, 0, 0, 4, 1, 5}, 
+    {0, 1, 0, 1, 1, 4, 1, 0, 1, 0}, 
+    {0, 1, 0, 0, 0, 0, 1, 0, 0, 0}, 
+    {0, 1, 1, 1, 1, 5, 1, 1, 1, 0}, 
+    {0, 0, 0, 4, 1, 0, 0, 5, 1, 0}, 
+    {9, 1, 5, 0, 0, 0, 1, 0, 0, 0}  
+    };
+    
+    char scelta;
+    
+    cout << "Come ti chiami avventuriero?: ";
+    cin >> eroe.nome;
+    cout << endl;
+    cout << "Spero che tu sia pronto " << eroe.nome << ", buona fortuna." << endl;
+
+    cout << "=========================================" << endl;
+    cout << "------------    I COMANDI    ------------" << endl;
+    cout << "=========================================" << endl;
+    cout << "  W. Vai in su" << endl;
+    cout << "  A. Vai a sinistra" << endl;
+    cout << "  S. Vai in giù" << endl;
+    cout << "  d. Vai a destra" << endl;
+    cout << "  I. Apri l'inventario" << endl;
+    cout << "  Q. Chiudi il gioco" << endl;
+    cout << "=========================================" << endl;
+    cout << endl;
+    cout << "Nemici totali: " << scansiona_nemici(mappa) << endl;
+    cout << "tesori totali: " << scansiona_tesori(mappa) << endl;
+
+    stampa_mappa(mappa);
+
+    do{
+        cin >> scelta;
+
+        switch(scelta){
+
+            case 'w':
+                pulisci_schermo();
+               if( eroe.x - 1 < 0 || mappa[eroe.x-1][eroe.y] == 1){
+                    cout << "Strada bloccata!!" << endl;
+                }else{
+                    if(mappa[eroe.x-1][eroe.y] == 5){
+                        eroe.monete += 1;
+                        cout << "Tesoro trovato!!" << endl;
+                    }else if(mappa[eroe.x-1][eroe.y] == 3){
+                        cout << "Hai trovato l'uscita!!" << endl;
+                        cout << "Hai trovato: " << eroe.monete<< " monete" << endl;
+                        return true;
+                    }else if(mappa[eroe.x-1][eroe.y] == 4){
+                        cout << "Hai uccio un nemico!!" << endl;
+                    }
+
+                    mappa[eroe.x][eroe.y] = 0;
+                    eroe.x -= 1;
+                    mappa[eroe.x][eroe.y] = 9;
+                }
+                
+                break;
+
+            case 'a':
+                pulisci_schermo();
+               if( eroe.y -1 < 0 || mappa[eroe.x][eroe.y - 1] == 1){
+                    cout << "Strada bloccata!!" << endl;
+                }else{
+                    if(mappa[eroe.x][eroe.y - 1] == 5){
+                        eroe.monete += 1;
+                        cout << "Tesoro trovato!!" << endl;
+                    }else if(mappa[eroe.x][eroe.y -1] == 3){
+                        cout << "Hai trovato l'uscita!!" << endl;
+                        cout << "Hai trovato: " << eroe.monete<< " monete" << endl;
+                        return true;
+                    }else if(mappa[eroe.x][eroe.y - 1] == 4){
+                        cout << "Hai uccio un nemico!!" << endl;
+                    }
+
+                    mappa[eroe.x][eroe.y] = 0;
+                    eroe.y -= 1;
+                    mappa[eroe.x][eroe.y] = 9;
+                }
+                
+                break;
+
+            case 's':
+                pulisci_schermo();
+               if( eroe.x + 1 >= mappa.size() || mappa[eroe.x+1][eroe.y] == 1){
+                    cout << "Strada bloccata!!" << endl;
+                }else{
+                    if(mappa[eroe.x + 1][eroe.y] == 5){
+                        eroe.monete += 1;
+                        cout << "Tesoro trovato!!" << endl;
+                    }else if(mappa[eroe.x + 1][eroe.y] == 3){
+                        cout << "Hai trovato l'uscita!!" << endl;
+                        cout << "Hai trovato: " << eroe.monete<< " monete" << endl;
+                        return true;
+                    }else if(mappa[eroe.x + 1][eroe.y] == 4){
+                        cout << "Hai uccio un nemico!!" << endl;
+                    }
+  
+                    mappa[eroe.x][eroe.y] = 0;
+                    eroe.x += 1;
+                    mappa[eroe.x][eroe.y] = 9;
+                }
+                
+                break;
+
+            case 'd':
+                pulisci_schermo();
+               if( eroe.y + 1 >= mappa[eroe.x].size() || mappa[eroe.x][eroe.y +1] == 1){
+                    cout << "Strada bloccata!!" << endl;
+                }else{
+                    if(mappa[eroe.x][eroe.y+1] == 5){
+                        eroe.monete += 1;
+                        cout << "Tesoro trovato!!" << endl;
+                    }else if(mappa[eroe.x][eroe.y+1] == 3){
+                        cout << "Hai trovato l'uscita!!" << endl;
+                        cout << "Hai trovato: " << eroe.monete<< " monete" << endl;
+                        return true;
+                    }else if(mappa[eroe.x][eroe.y+1] == 4){
+                        cout << "Hai uccio un nemico!!" << endl;
+                    }
+
+                    mappa[eroe.x][eroe.y] = 0;
+                    eroe.y+= 1;
+                    mappa[eroe.x][eroe.y] = 9;
+                }
+                
+                break;
+
+            case 'i':
+                pulisci_schermo();
+                inventario(eroe);
+                break;
+
+            case 'q':
+                cout << "Sto uscendo...";
+                return true;
+                break;
+
+            default:
+                pulisci_schermo();
+                cout << "Comando non utilizzabile" << endl;
+                break;    
+        }
+        cout << "Nemici rimasti: " << scansiona_nemici(mappa) << endl;
+        cout << "Tesori rimasti: " << scansiona_tesori(mappa) << endl;
+        cout << endl;
+        cout << endl;
+        
+        stampa_mappa(mappa);
+
+    }while( scelta != 'q');
+   
+    return false;
+}
+
+int main(){
+   
+    char scelta;
+    
+
+    cout << "=========================================" << endl;
+    cout << "--------   MYSTERY DUNGEON RPG   --------  " << endl;
+    cout << "=========================================" << endl;
+    cout << "  1. Inserisci Nome e Inizia l'Avventura" << endl;
+    cout << "  2. Abbandona la Partita (Esci)" << endl;
+    cout << "=========================================" << endl;
+    cout << "Cosa vuoi fare?: ";
+
+    do{
+        cin >> scelta;
+        switch(scelta){
+           
+            case '1':
+                if(gioco() == true){
+                    return 0;
+                }
+                break;
+
+            case '2':
+                return 0;
+                break;
+
+            default:
+                cout << "Comando non valido";
+                break;
+        }
+       
+    }while(scelta != '2');
+
+    cout << "\nPremere INVIO per uscire...";
+    cin.ignore(); // Svuota il buffer dei tasti premuti in precedenza
+    cin.get();    // Aspetta la pressione di INVIO
+
+    return 0;
+}

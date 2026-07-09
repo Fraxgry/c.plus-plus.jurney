@@ -1,0 +1,31 @@
+/**
+ * @file profilo_eroe.cpp
+ * @brief Definisce la struct Eroe (string nome, int livello, int salute) e ne stampa i dati a schermo.
+ * @return int Restituisce 0 alla fine dell'esecuzione.
+ */
+ 
+#include <iostream>
+
+using namespace std;
+
+struct Personaggio{
+    
+    string nome ;
+    int livello;
+    int salute;
+};
+
+
+int main(){
+    
+    Personaggio eroe;
+    
+    eroe.nome = "Lancillotto";
+    eroe.livello = 2;
+    eroe.salute = 100;
+    
+    cout << "Nome: " << eroe.nome << endl << "Livello: " << eroe.livello << endl << "Salute: " << eroe.salute << endl;
+    
+    
+    return 0;
+}

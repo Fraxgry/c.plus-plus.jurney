@@ -1,0 +1,30 @@
+/**
+ * @file generatore_tabelle.cpp
+ * @brief Generazione di una griglia quadrata di asterischi tramite cicli nidificati.
+ * * Il programma richiede all'utente un numero intero N e genera a schermo
+ * una matrice di dimension N x N composta da asterischi. Utilizza una
+ * struttura a due cicli for nidificati per gestire righe e colonne.
+ * * @return int Restituisce 0 in caso di esecuzione corretta.
+ */
+ 
+ #include <iostream>
+ 
+ using namespace std;
+ int main(){
+     
+     int N;
+     
+     cout << "Questo programma dato un numero N genera una tabella NxN di asterischi" << endl;
+     cout << "Quanto deve essere grande la tabella?: ";
+     cin >> N;
+     cout << "Ecco una tabella di " << N << " righe e " << N << " colonne:" << endl;
+     
+     for(int i = 0; i < N; i++){
+         for(int j = 0; j < N; j++){
+             cout << "* ";
+         }
+         cout << endl;
+     }
+     
+     return 0;
+ }
