@@ -2,7 +2,7 @@
  * @file array_min_max.cpp
  * @brief Ricerca del valore massimo e minimo in un array statico.
  * * Il programma richiede all'utente l'inserimento di N numeri interi,
- * li memorizza in un array a dimensione fissa e successivamente lo scansiona
+ * li memorizza in un array a dimensione dinamica e successivamente lo scansiona
  * per determinare il valore maggiore e minore inseriti.
  * * @return int Restituisce 0 in caso di esecuzione corretta.
  */
