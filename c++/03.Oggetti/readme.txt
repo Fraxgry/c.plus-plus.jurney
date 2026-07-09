@@ -17,12 +17,12 @@ Esplora la creazione delle classi base e la protezione dei dati interni.
 
 ### 2. `🧬 ereditarieta/`
 Contiene gli esercizi dedicati al riutilizzo del codice e alla creazione di gerarchie tra classi.
-* **Concetti chiave:** Relazioni tra classe Padre (Base) e classe Figlia (Derivata), parole chiave `public` e `protected`.
+* **Concetti chiave:** Relazioni tra classe Padre (Base) e classe Figlia (Derivata), parola chiave `public`.
 * **Logica:** Gestione dei costruttori a cascata con inoltro dei parametri alla classe base e riutilizzo degli attributi protetti.
 
 ### 3. `🎭 polimorfismo/`
 Raccoglie le sfide più avanzate sulla gestione dinamica degli oggetti e sulle interfacce comuni.
-* **Concetti chiave:** Funzioni virtuali (`virtual` e `override`), classi astratte e funzioni virtuali pure (`= 0`).
+* **Concetti chiave:** Funzioni virtuali (`virtual` e `override`), classi astratte e funzioni virtuali pure (`= 0`), introduzione agli attributi 'protected'.
 * **Memoria Dinamica:** Uso accoppiato di puntatori alla classe base, allocazione con `new`/`delete` e importanza del **distruttore virtuale** per prevenire i *memory leak*.
 
 ---
