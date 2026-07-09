@@ -1,3 +1,17 @@
+/*********************************************************************************************************
+ * GESTIONE DEGLI STATI DINAMICI E GERARCHIE DI ACCESSO
+ * * Esercizio sulla modellazione incrementale di dati protetti combinati con liste dinamiche.
+ * * 1. CLASSE BASE: "Persona"
+ * - Gestione base del nome tramite costruttore standard.
+ * * 2. CLASSE FIGLIA: "Atleta" (Eredita da Persona)
+ * - Attributi privati (`private`): 'km_corsi' (accumulatore interno gestibile solo tramite regole della classe).
+ * - Costruttore a cascata: aggancia il nome al Padre e azzera lo stato dei chilometri.
+ * - Metodo `aggiungi_km()`: Incapsulamento puro con validazione dei dati ad incremento (valori strettamente positivi).
+ * * NEL MAIN:
+ * - Creazione di una squadra tramite `std::vector<Atleta>`.
+ * - Algoritmo di scansione combinato con aggiornamento dinamico degli stati interni degli oggetti.
+ *********************************************************************************************************/
+
 #include <iostream>
 #include <string>
 #include <vector>
